@@ -1,13 +1,4 @@
 import os
-print("""
- _                          __  __     _____     _   _            _
-| |    ___  __ _ _ __ _ __ |  \/  | __|_   _|__ | | | | __ _  ___| | __
-| |   / _ \/ _` | '__| '_ \| |\/| |/ _ \| |/ _ \| |_| |/ _` |/ __| |/ /
-| |__|  __/ (_| | |  | | | | |  | |  __/| | (_) |  _  | (_| | (__|   <
-|_____\___|\__,_|_|  |_| |_|_|  |_|\___||_|\___/|_| |_|\__,_|\___|_|\_\ 
-                                                            By Mazy_Lan \n""")
-
-
 def banner():
 	print("""
  _                          __  __     _____     _   _            _
@@ -16,8 +7,6 @@ def banner():
 | |__|  __/ (_| | |  | | | | |  | |  __/| | (_) |  _  | (_| | (__|   <
 |_____\___|\__,_|_|  |_| |_|_|  |_|\___||_|\___/|_| |_|\__,_|\___|_|\_\ 
                                                             By Mazy_Lan \n""")
-
-
 
 def crack(Wpath, zipath):
 	import zipfile
@@ -67,31 +56,35 @@ def info(zipfilepath):
 
 
 
+def looper():
+    while True:
+        cmd=input("\nzip> ")
+        if(cmd == "help") or (cmd == "?"):
+            print(""" \n
+    extract				specify full path to your zip file
+    fullextract			extract all files in zip archiv
+    build				build you archive Zip
+    info 				info about archiv
+    crack				cracka zip file protected by pass 
+    banner				show banner""")
 
-while True:
-	cmd=input("\nzip> ")
-	if(cmd == "help") or (cmd == "?"):
-		print(""" \n
-extract				specify full path to your zip file
-fullextract			extract all files in zip archiv
-build				build you archive Zip
-info 				info about archiv
-crack				cracka zip file protected by pass 
-banner				show banner""")
+        elif(cmd == "crack"):
+            Wlist = input("[+]wordlist path: ")
+            zipath = input("[+]zipfile path: ")
+            crack(Wlist, zipath)
+        elif(cmd == "exit") or (cmd == "quit"):
+            break
+        elif(cmd == "build"):
+            zipname = input("zip filename: ")
+            files = input("[+]Liste of files Ex file1 file2 ...: ")
+            build(zipname, files)
+        elif(cmd == 'info'):
+            zipfilepath = input("[+]specify path to your file: ")
+            info(zipfilepath)
+        elif(cmd == 'banner'):
+            banner()
 
-	elif(cmd == "crack"):
-		Wlist = input("[+]wordlist path: ")
-		zipath = input("[+]zipfile path: ")
-		crack(Wlist, zipath)
-	elif(cmd == "exit") or (cmd == "quit"):
-		break
-	elif(cmd == "build"):
-		zipname = input("zip filename: ")
-		files = input("[+]Liste of files Ex file1 file2 ...: ")
-		build(zipname, files)
-	elif(cmd == 'info'):
-		zipfilepath = input("[+]specify path to your file: ")
-		info(zipfilepath)
-	elif(cmd == 'banner'):
-		banner()
+def main():
+    looper()
 
+main()
